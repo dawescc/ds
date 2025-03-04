@@ -1,21 +1,34 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "./theme.css";
 
+/* Brand Specific Styles */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--primary: hsl(31, 100%, 50%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme inline {
+	@keyframes spinner-leaf-fade {
+		0%,
+		100% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+	}
+	--animate-spinner-leaf-fade: spinner-leaf-fade 800ms linear infinite;
+	--spacing-max-content: 1400px;
+	--spacing-sidebar: 256px;
+	--spacing-header: 64px;
+
+	--color-primary: var(--primary);
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+	.button {
+		@apply rounded border grid grid-cols-1 place-items-center px-2 py-1.5
+		bg-gray-100 cursor-pointer hover:bg-gray-200 active:bg-gray-300
+		hover:border-gray-500 active:border-gray-600
+		font-medium text-lg;
+	}
 }
